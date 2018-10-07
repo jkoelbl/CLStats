@@ -1,8 +1,8 @@
 import openpyxl, sys, os
 from classes import site_new, site_old, site_sh
 
-OUTPUT = 'output.csv'
-DUPES = 'dupes.csv'
+OUTPUT = '../../CSVs/output.csv'
+DUPES = '../../CSVs/dupes.csv'
 
 def write_to_file(sites):
 	[print(str(site),'\n') for site in sites]

@@ -21,7 +21,7 @@ class site:
 
 class program:
 	def __init__(self, ws):
-		self.name = ws[commands[0]].value
+		self.name = '\"' + ws[commands[0]].value + '\"'
 		self.agency = ws[commands[1]].value
 		self.agency_other = ws[commands[2]].value
 		self.operations = [ws[command].value for command in commands[3:17]]
@@ -35,6 +35,39 @@ class program:
 		self.agents = [ws[command] for command in commands[37]]
 		self.complexity = [ws[command] for command in commands[38:42]]
 		self.reporting = [ws[command] for command in commands[42:46]]
+	
+	def get_operations(self, ws, list):
+		list = [str(ws[item].value).lower() for value in list]
+		for i in range(7):
+			if list[i] == 'closed' or list[i] != list[i+7]:
+				return 'Day'
+		return '24/7'
+	
+	def get_contingencies(self, ws, list):
+		list = [str(ws[item].value).lower() for value in list]
+		selects = sum([1 for item in list if item=='select'])
+		yeses = sum([1 for item in list if item=='yes'])
+		noes = sum([1 for item in list if item=='no'])
+		if noes == 3:	return 'None'
+		if yeses > 1:	return 'Multiple'
+		if selects > 1:	return ''
+		if selects == 1 and noes == 1:	return ''
+		
+		types = ('Offsite','Recording','Redirected')
+		for i in range(len(list)):
+			if list[i]=='yes':
+				return types[i]
+		return ''
+		
+		
+	def get_complexity(self, ws, list):
+		list = [str(ws[item].value).lower() for value in list]
+	
+	def get_reporting(self, ws, list):
+		list = [str(ws[item].value).lower() for value in list]
+	
+	def __str__(self):
+		group = ()
 		
 OLD = ('E32','C5','E30','C25','C5','C6','D6', \
 		'C13','C14','C15','C16','C17','C18','C19', \
@@ -71,12 +104,12 @@ DETECTION_NEW = ('B21','B22','B23','B24','B25','B26','B27','B28')
 
 class site_old(site):
 	def __init__(self, wb):
-		site.__init__(self, wb, OLD, DETECTION_OLD)
+		site.__init__(wb, OLD, DETECTION_OLD)
 
 class site_new(site):
 	def __init__(self, wb):
-		site.__init__(self, wb, NEW, DETECTION_NEW)
+		site.__init__(wb, NEW, DETECTION_NEW)
 
 class site_sh(site):
 	def __init__(self, wb):
-		site.__init__(self, wb, SH, DETECTION_NEW)
+		site.__init__(wb, SH, DETECTION_NEW)
