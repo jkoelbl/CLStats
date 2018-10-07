@@ -1,0 +1,241 @@
+1067 -	Program 1: Section 2 - agent quantities invalid
+1073 -	Program 1: Section 2 - agent quantities invalid
+1100 -	Program 2: Agency not listed
+1127 -	Program 5: Agency listed simply as 'other'
+1143 -	Program 1: WAN Service Connectivity: quantity not listed
+1154 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+1158 -	Program 2: Agency not listed
+1159 - 	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+1257 - 	Program 2: Section 2 - Business Telephony Platform not listed
+1303 -	Program 2: Agency not listed
+1307 -	Program 2: On-site CC staff despite no CC
+	Program 3: Agency not listed
+1329 -	Program 2: Section 2 - Business Telephony Platform not listed
+1335 -	Program 1: Routing methods not listed
+1340 -	Program 2: WAN Service Connectivity: quantity invalid
+	Program 2: Section 2 - Business Telephony Platform not listed
+1349 -	Program 2: Agency not listed
+1366 -	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: Section 2 - Business Telephony Platform not listed
+1371 -	Program 1: WAN Service Connectivity: quantity invalid
+	Program 2: WAN Service Connectivity: quantity invalid
+	Program 2: Agency not listed
+1372 -	Program 1: WAN Service Connectivity: quantity not listed
+1374 -	Program 1: No connectivity details listed
+	Program 2: No connectivity details listed
+	Program 3: No connectivity details listed
+1391 -	Program 2: Section 2 - Business Telephony Platform not listed
+1394 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 2: Section 3 - Contact Center Platform not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+	Program 4: WAN Service Connectivity: quantity not listed
+1405 -	Program 1: Section 2 - agent quantities invalid
+	Program 2: Section 2 - agent quantities invalid
+	Program 3: Section 2 - agent quantities invalid
+	Program 4: Section 2 - agent quantities invalid
+1409 -	Program 1: WAN Service Connectivity: quantity not listed
+1417 -	Program 3: Business Functions not listed
+1421 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 2: Section 2 - Business Telephony Platform not listed
+1440 -	Program 1: Section 3 only partially completed
+1449 -	Duplicated; same data
+1459 -	Program 1: Section 3 only partially completed
+1462 -	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: Section 2 - Business Telephony Platform not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+1467 -	Program 2: Business Functions not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+1469 -	Program 1: Section 3 only partially completed
+1514 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+1559 -	Program 1: Agency not listed
+	Program 2: Agency not listed
+	Program 3: Agency not listed
+1564 -	Program 1: Business Functions not listed
+	Program 1: Section 3 only partially completed
+1585 -	Program 1: WAN Service Connectivity: quantity invalid
+1650 -	Program 3: WAN Service Connectivity: quantity not listed
+1653 -	Program 1: Section 2 - agent quantities invalid
+	Program 2: Section 2 - agent quantities invalid
+	Program 3: Section 2 - agent quantities invalid
+1666 -	Duplicated; discrepencies found between 2 files
+1671 -	Program 1: Section 2 - agent quantities invalid
+	Program 2: Section 2 - agent quantities invalid
+	Program 2: Section 2 - Business Telephony Platform not listed
+1686 -	Program 2: Section 3 only partially completed
+1692 -	Program 1: Section 2 - Business Telephony Platform not listed
+	Program 2: Section 2 - Business Telephony Platform not listed
+1699 -	Program 1: WAN Service Connectivity: quantity not listed
+1717 -	Program 1: Section 3 only partially completed
+1723 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 1: Section 3 only partially completed
+1725 -	Program 1: Agency not listed
+	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+1726 -	Program 1: WAN Service Connectivity: quantity invalid
+1739 -	Program 1: Section 3 only partially completed
+	Program 2: Section 2 - agent quantities invalid
+	Program 2: Section 3 only partially completed
+1741 -	Program 2: Section 2 - agent quantities invalid
+1759 -	Duplicated; discrepencies found between 2 files
+1767 -	Duplicated?; yet no duplicates present
+1777 -	Program 1: WAN Service Connectivity: quantity not listed
+1782 -	Program 1: WAN Service Connectivity: quantity invalid
+1785 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+1786 -	Duplicated; discrepencies found between 2 files
+1799 -	Program 2: WAN Service Connectivity: quantity not listed
+1801 -	Program 1: WAN Service Connectivity: quantity not listed
+1805 -	Program 1: Agency not listed
+	Program 2: Agency not listed
+	Program 2: WAN Service Connectivity: description not listed
+	Program 3: Agency not listed
+	Program 3: WAN Service Connectivity: description not listed
+1811 -	Program 1: WAN Service Connectivity: quantity not listed
+1826 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+	Program 4: WAN Service Connectivity: quantity not listed
+1838 -	Program 1: WAN Service Connectivity: quantity not listed
+1851 -	Program 2: Section 3 only partially completed
+	Program 3: Section 3 only partially completed
+	Program 4: Agency listed simply as 'other'
+	Program 4: Business Functions not listed
+	Program 4: Section 2 - empty
+1852 -	Program 1: WAN Service Connectivity: quantity invalid
+	Program 1: Section 2 only partially completed
+	Program 1: Section 3 only partially completed
+1853 -	Program 1: WAN Service Connectivity: quantity not listed
+1855 -	Program 1: WAN Service Connectivity: quantity not listed
+1860 -	Program 1: WAN Service Connectivity: quantity not listed
+1865 -	Program 2: Agency not listed
+1866 -	Duplicated; same data
+1886 -	Program 1: Section 2 - agent quantities invalid
+	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 2: Section 2 - agent quantities invalid
+1889 -	Program 1: Section 3 only partially completed
+	Program 2: Agency listed simply as 'other'
+1895 -	Program 1: WAN Service Connectivity: quantity not listed
+1911 -	Program 1: Section 3 only partially completed
+1917 -	Program 2: WAN Service Connectivity: quantity not listed
+1929 -	Program 1: Agency not listed
+	Program 1: WAN Service Connectivity: quantity not listed
+1931 -	Program 1: Section 2 - agent quantities invalid
+1933 -	Program 2: WAN Service Connectivity: quantity not listed
+1941 -	Program 1: Section 3 only partially completed
+	Program 3: Agency not listed
+1973 -	Program 1: WAN Service Connectivity: quantity not listed
+1974 -	Program 1: Section 3 only partially completed
+1979 -	Program 2: Section 2 - Business Telephony Platform not listed
+1991 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 1: Section 2 only partially completed
+2019 -	Program 1: WAN Service Connectivity: quantity invalid
+2025 -	Program 1: WAN Service Connectivity: quantity invalid
+2026 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+2060 -	Program 1: Business Functions: IT Staff set to 'select'
+	Program 2: WAN Service Connectivity: quantity not listed
+2074 -	Program 1: WAN Service Connectivity: quantity invalid
+	Program 2: WAN Service Connectivity: quantity invalid
+	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: WAN Service Connectivity: quantity invalid
+2075 -	Program 1: WAN Service Connectivity: quantity invalid
+2080 -	Program 1: Agency not listed
+	Program 2: Agency not listed
+2081 -	Program 1: WAN Service Connectivity: quantity invalid
+	Program 1: Section 2 - Business Telephony Platform not listed
+2083 -	Program 1: Agency not listed properly
+	Program 1: Business Functions not listed
+	Program 1: WAN Service Connectivity: Description not listed
+	Program 1: Section 2 - Business Telephony Platform not listed
+	Program 1: Section 2 - agent quantities invalid
+2097 -	Program 3: Agency not listed
+2128 -	Program 1: WAN Service Connectivity: quantity not listed
+2137 -	Duplicated; discrepencies found between 2 files
+2139 -	Program 1: WAN Service Connectivity: quantity not listed
+2155 -	Duplicated?; yet no duplicates present
+2278 -	Program 1: WAN Service Connectivity: quantity invalid
+	Program 2: WAN Service Connectivity: quantity invalid
+	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: WAN Service Connectivity: quantity invalid
+	Program 3: Section 2 - Business Telephony Platform not listed
+2351 -	Program 1: Section 3 only partially completed
+2400 -	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: Section 2 - Business Telephony Platform not listed
+2795 -	Program 1: WAN Service Connectivity: quantity invalid
+2855 -	Program 1: Section 3 only partially completed
+	Program 2: Business Functions incomplete
+2900 -	Program 1: WAN Service Connectivity: quantity not listed
+2915 -	Program 1: Section 2 - agent quantities invalid
+	Program 2: Section 2 - agent quantities invalid
+	Program 3: Section 2 - agent quantities invalid
+2931 -	Program 1: Business Functions: Training location set to 'select'
+	Program 1: WAN Service Connectivity: quantity not listed
+	Program 1: Section 3 only partially completed
+2956 -	Program 2: Section 2 - Business Telephony Platform not listed
+2986 -	Program 1: Business Functions: IT Staff listed as 'Select'
+	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 3: WAN Service Connectivity: quantity not listed
+3003 -	Program 1: WAN Service Connectivity: quantity not listed
+3005 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+3007 -	Program 1: Agency not listed
+3043 -	Duplicated?; yet no duplicates present
+3065 -	Program 1: Section 2 - agent quantities invalid
+3069 -	Duplicated; same data
+3084 -	Program 1: WAN Service Connectivity: quantity not listed
+3090 -	Program 1: Business Functions: Machine/Print/Sign Shop listed as 'Select'
+	Program 1: WAN Service Connectivity: quantity not listed
+3104 -	Program 1: WAN Service Connectivity: quantity invalid
+3106 -	Program 1: WAN Service Connectivity: quantity not listed
+3128 -	Program 1: WAN Service Connectivity: quantity not listed
+3138 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: Section 3 - Contact Center Feature Usage not listed
+3212 -	Program 1: Agency not listed
+	Program 2: Agency not listed
+	Program 2: Section 2 - Business Telephony Platform not listed
+	Program 3: Agency not listed
+	Program 3: WAN Service Connectivity: Description not listed
+3231 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 1: Section 3 - Contact Center Platform not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+	Program 2: Section 3 - Contact Center Platform not listed
+3233 -	Program 1: WAN Service Connectivity: quantity not listed
+3242 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+3253 -	Program 1: Section 3 - Active Agent Types not listed
+	Program 3: Agency listed simply as 'other'
+3259 -	Program 2: Agency not listed
+3267 -	Program 2: WAN Service Connectivity: quantity not listed
+3268 -	Program 1: Agency not listed
+	Program 2: Agency not listed
+	Program 3: Agency not listed
+	Program 3: Section 2 - Business Telephony Platform not listed
+3283 -	Program 3: Business Functions: Closed Location listed as 'Select'
+3287 -	Program 2: WAN Service Connectivity: quantity not listed
+3291 -	Program 1: WAN Service Connectivity: quantity invalid
+3299 -	Program 1: WAN Service Connectivity: quantity not listed
+3300 -	Program 1: WAN Service Connectivity: quantity not listed
+3303 -	Program 1: Section 2 - Business Telephony Platform not listed
+3315 -	Program 1: Section 3 only partially completed
+3335 -	Program 1: Section 3 only partially completed
+3345 -	Program 1: WAN Service Connectivity: quantity not listed
+3353 -	Program 1: Agency not listed properly
+	Program 1: Section 2 - agent quantities invalid
+	Program 2: Agency not listed
+	Program 2: Section 2 - agent quantities invalid
+3356 -	Program 4: Section 2 - Business Telephony Platform not listed
+	Program 5: Section 2 - Business Telephony Platform not listed
+	Program 7: Section 2 - Mobile Workers quantities invalid
+	Program 7: WAN Service Connectivity: quantity not listed
+3361 -	Program 1: WAN Service Connectivity: quantity not listed
+3368 -	Program 1: WAN Service Connectivity: quantity not listed
+	Program 2: WAN Service Connectivity: quantity not listed
+3377 -	Program 1: WAN Service Connectivity: quantity not listed
