@@ -28,7 +28,7 @@ class site:
 
 class program:
 	def __init__(self, ws, commands):
-		self.name = '\"' + modify(ws[commands[0]].value) + '\"'
+		self.name = modify(ws[commands[0]].value)
 		self.agency = modify(ws[commands[1]].value)
 		if ws[commands[1]].value == 'Other:' and modify(ws[commands[2]].value):
 			self.agency = modify(ws[commands[2]].value)
