@@ -14,7 +14,13 @@ class site:
 		self.add_programs(wb, commands[4:], detections)
 	
 	def add_programs(self, wb, commands, detections):
-		programs = [wb.sheetnames[i+1] for i in range(len(detections)) if wb['Site Info'][detections[i]].value]
+		programs = []
+		for i in range(len(detections)):
+			sheet = wb.sheetnames[i+1]
+			detect = wb['Site Info'][detections[i]].value
+			if not detect or not str(detect).strip():
+				break
+			programs.append(sheet)
 		self.programs = [program(wb[p], commands) for p in programs]
 	
 	def __str__(self):
@@ -35,7 +41,7 @@ class program:
 		self.operations = self.get_operations(ws, commands[3:17])
 		self.contingencies = self.get_contingencies(ws, commands[17:20])
 		self.business_functions = [modify(ws[command].value) for command in commands[20:31]]
-		self.connectivity = [modify(ws[command].value) for command in commands[31:32]]
+		self.connectivity = [modify(ws[command].value) for command in commands[31:33]]
 		self.telephony_platform = modify(ws[commands[33]].value)
 		self.tele_users = [modify(ws[command].value) for command in commands[34]]
 		self.cc_platform = modify(ws[commands[35]].value)
