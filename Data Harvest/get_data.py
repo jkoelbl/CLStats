@@ -46,13 +46,13 @@ def get_all_data():
 				s = get_information(path=PATH+'/'+file)
 				
 				#if site exists, log and overwrite
-				if s.id in items_added:
-					items_added[s.id] += 1
+				if (s.id, s.addr) in items_added:
+					items_added[(s.id, s.addr)] += 1
 					s.id = s.id+'.0'+str(items_added[s.id]-1)
 					with open(DUPES,'a') as dupe:
 						dupe.write('\"'+PATH+'\",\"'+file+'\"\n')
 				else:
-					items_added[s.id] = 1
+					items_added[(s.id, s.addr)] = 1
 				sites.append(s)
 	
 	# convert to list and sort

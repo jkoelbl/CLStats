@@ -7,9 +7,9 @@
 
 from save import *
 from statistics import *
-from formatting_v2 import load_data, make_classes
+from formatting import load_data
 
-INFILE = '../../CSVs/Site Summary 100418 v4-pivot.csv'
+INFILE = '../../CSVs/Site Summary 100418 v4.csv'
 OUTFILE = '../../CSVs/results.csv'
 
 # load data and convert to classes
