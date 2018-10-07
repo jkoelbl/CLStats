@@ -1,10 +1,15 @@
+def modify(x):
+	if not x or str(x).lower()=='select' or str(x).lower()=='no':
+		return ''
+	return str(x)
+
 class site:
 	def __init__(self, wb, commands, detections):
 		ws = wb['Site Info']
-		self.id = ws[commands[0]].value
-		self.addr = ws[commands[1]].value
-		self.region = ws[commands[2]].value
-		self.lead_agency = ws[commands[3]].value
+		self.id = modify(ws[commands[0]].value)
+		self.addr = modify(ws[commands[1]].value)
+		self.region = modify(ws[commands[2]].value)
+		self.lead_agency = modify(ws[commands[3]].value)
 		self.programs = []
 		self.add_programs(wb, commands[4:], detections)
 	
@@ -12,42 +17,42 @@ class site:
 		programs = [wb.sheetnames[i+1] for i in range(len(detections)) if wb['Site Info'][detections[i]].value]
 		self.programs = [program(wb[p], commands) for p in programs]
 	
-	def str(self):
+	def __str__(self):
 		group = (self.id,'\"'+self.addr+'\"','','','',self.region,self.lead_agency)
 		temp = ','.join(group)
 		for i in range(len(self.programs)):
 			if i:	temp += '\n' + ','.join(['' for _ in group])
 			temp += ',' + str(self.programs[i])
-		return temp
+		return temp+'\n'
 
 
 class program:
-	def __init__(self, ws):
-		self.name = '\"' + ws[commands[0]].value + '\"'
-		self.agency = ws[commands[1]].value
-		if ws[commands[1]].value == 'Other:' and ws[commands[2]].value:
-			self.agency = ws[commands[2]].value
+	def __init__(self, ws, commands):
+		self.name = '\"' + modify(ws[commands[0]].value) + '\"'
+		self.agency = modify(ws[commands[1]].value)
+		if ws[commands[1]].value == 'Other:' and modify(ws[commands[2]].value):
+			self.agency = modify(ws[commands[2]].value)
 		self.operations = self.get_operations(ws, commands[3:17])
 		self.contingencies = self.get_contingencies(ws, commands[17:20])
-		self.business_functions = [ws[command].value for command in commands[20:31]]
-		self.connectivity = [ws[command].value for command in commands[31:32]]
-		self.telephony_platform = ws[commands[33]].value
-		self.tele_users = [ws[command] for command in commands[34]]
-		self.cc_platform = ws[commands[35]].value
-		self.agent_types = ws[commands[36]].value
-		self.agents = [ws[command] for command in commands[37]]
+		self.business_functions = [modify(ws[command].value) for command in commands[20:31]]
+		self.connectivity = [modify(ws[command].value) for command in commands[31:32]]
+		self.telephony_platform = modify(ws[commands[33]].value)
+		self.tele_users = [modify(ws[command].value) for command in commands[34]]
+		self.cc_platform = modify(ws[commands[35]].value)
+		self.agent_types = modify(ws[commands[36]].value)
+		self.agents = [modify(ws[command].value) for command in commands[37]]
 		self.complexity = self.get_complexity(ws, commands[38:42])
 		self.reporting = self.get_reporting(ws, commands[42:46])
 	
 	def get_operations(self, ws, list):
-		list = [str(ws[item].value).lower() for value in list]
+		list = [str(ws[item].value).lower() for item in list]
 		for i in range(7):
 			if list[i] == 'closed' or list[i] != list[i+7]:
 				return 'Day'
 		return '24/7'
 	
 	def get_contingencies(self, ws, list):
-		list = [str(ws[item].value).lower() for value in list]
+		list = [str(ws[item].value).lower() for item in list]
 		selects = sum([1 for item in list if item=='select'])
 		yeses = sum([1 for item in list if item=='yes'])
 		noes = sum([1 for item in list if item=='no'])
@@ -59,10 +64,10 @@ class program:
 		for i in range(len(list)):
 			if list[i]=='yes':
 				return types[i]
-		return ''
+		return 'None'
 		
 	def get_complexity(self, ws, list):
-		list = [str(ws[item].value).lower() for value in list]
+		list = [str(ws[item].value).lower() for item in list]
 		if 'select' == list[2]:	return ''
 		if 'yes' == list[2]:	return 'Advanced'
 		if 'select' == list[1]:	return ''
@@ -72,7 +77,7 @@ class program:
 		return 'None'
 	
 	def get_reporting(self, ws, list):
-		list = [str(ws[item].value).lower() for value in list]
+		list = [str(ws[item].value).lower() for item in list]
 		if 'select' in list[2:4]:	return ''
 		if 'yes' in list[2:4]:	return 'Advanced'
 		if 'select' in list[:2]:	return ''
@@ -80,13 +85,14 @@ class program:
 		return 'None'
 	
 	def __str__(self):
-		group = (self.agency, self.name, self.operations, \
+		group = (self.agency, '\"'+self.name+'\"', self.operations, \
 				','.join(self.business_functions), self.contingencies, \
 				self.telephony_platform, ','.join(self.tele_users), \
 				self.cc_platform, ','.join(self.agents), \
 				self.agent_types, self.complexity, self.reporting, \
 				','.join(self.connectivity))
-		temp = ','.join(group)
+		return ','.join(group)
+
 		
 OLD = ('E32','C5','E30','C25','C5','C6','D6', \
 		'C13','C14','C15','C16','C17','C18','C19', \
@@ -123,12 +129,12 @@ DETECTION_NEW = ('B21','B22','B23','B24','B25','B26','B27','B28','B29','B30','B3
 
 class site_old(site):
 	def __init__(self, wb):
-		site.__init__(wb, OLD, DETECTION_OLD)
+		super().__init__(wb, OLD, DETECTION_OLD)
 
 class site_new(site):
 	def __init__(self, wb):
-		site.__init__(wb, NEW, DETECTION_NEW)
+		super().__init__(wb, NEW, DETECTION_NEW)
 
 class site_sh(site):
 	def __init__(self, wb):
-		site.__init__(wb, SH, DETECTION_NEW)
+		super().__init__(wb, SH, DETECTION_NEW)

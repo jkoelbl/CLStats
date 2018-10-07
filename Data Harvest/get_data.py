@@ -5,9 +5,9 @@ OUTPUT = '../../CSVs/output.csv'
 DUPES = '../../CSVs/dupes.csv'
 
 def write_to_file(sites):
-	[print(str(site),'\n') for site in sites]
+	[print(str(s),'\n') for s in sites]
 	with open(OUTPUT, 'a') as file:
-		[file.write(str(site)) for site in sites]
+		[file.write(str(s)) for s in sites]
 
 def get_information(path):
 	wb = openpyxl.load_workbook(filename=path, read_only=True, data_only=True)
@@ -22,9 +22,10 @@ def get_information(path):
 
 def get_all_data():
 	# get upper directory
-	os.chdir('..')
+	temp = os.getcwd()
+	os.chdir('../..')
 	ROOT = os.getcwd()+'/'
-	os.chdir('Code - Data Harvest')
+	os.chdir(temp)
 	
 	#clear files
 	open(DUPES,'w').close()
@@ -39,12 +40,12 @@ def get_all_data():
 			# run if data is excel file
 			if not os.path.isdir(file) and file.split('.')[-1] == 'xlsx' and file[:2] != '~$':
 				print(' ',file)
-				site = get_information(path=PATH+'/'+file)
-				if site.id not in items_added:
-					items_added[site.id] = len(sites)
-					sites.append(site)
+				s = get_information(path=PATH+'/'+file)
+				if s.id not in items_added:
+					items_added[s.id] = len(sites)
+					sites.append(s)
 				else: #if site exists, log and overwrite
-					sites[items_added[site.id]] = site
+					sites[items_added[s.id]] = s
 					with open('dupes.csv','a') as dupe:
 						dupe.write('\"'+PATH+'\",\"'+file+'\"\n')
 	
