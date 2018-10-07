@@ -5,7 +5,7 @@ OUTPUT = '../../CSVs/output.csv'
 DUPES = '../../CSVs/dupes.csv'
 
 def write_to_file(sites):
-	[print(str(s),'\n') for s in sites]
+	[print(str(s),end='') for s in sites]
 	with open(OUTPUT, 'a') as file:
 		[file.write(str(s)) for s in sites]
 
