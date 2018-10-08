@@ -26,7 +26,7 @@ site_access = get_site_access_analysis(sites)
 num_owned = get_owned_status_analysis(sites)
 bis_cc_type, bis_cc_type_connectivity = get_bis_cc_analysis(sites)
 cc_types_extended, agency_per_type = get_lead_agency_analysis(sites)
-tele_core = get_tele_core_analysis(sites)
+tele_core, bis_tele_core, cc_tele_core = get_tele_core_analysis(sites)
 
 # save result as comma-separated list
 output = init_outfile()
@@ -60,6 +60,8 @@ output += add_new_data(header+encode_maplist_w_sum(agency_per_type), title='Numb
 
 output += add_new_data(encode_maplist_w_sum(tele_core), title='Avaya by Telephony Core')
 output += add_new_data(encode_maplist(avg_workers_at_avaya, False), title='Average Number of Workers at Sites with Avaya Business and Avaya Contact Center Only')
+output += add_new_data(encode_maplist_w_sum(bis_tele_core), title='Telephony Core for Sites with Avaya Business Only')
+output += add_new_data(encode_maplist_w_sum(cc_tele_core), title='Telephony Core for Sites with Avaya Contact Center')
 
 # print output and save it in OUTFILE
 print(output)

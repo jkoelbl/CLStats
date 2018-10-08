@@ -20,8 +20,6 @@ cc_types_extended = ('Cisco Business Only', \
 			'Avaya Contact Center Only', \
 			'Cisco and Avaya Contact Center Only', \
 			'None')
-avaya_types = ('winters core','moreton core','remote winters','remote moreton','self','')
-avaya_types_extended = ('Winters CORE','Moreton CORE','Remote Winters','Remote Moreton','Self','None')
 
 def get_num_owned(sites):
 	types = ('owned', 'leased', 'none')
@@ -61,10 +59,3 @@ def get_agency_per_type(sites):
 			apt[temp2[i]] = apt[temp[i]]
 			del apt[temp[i]]
 	return apt
-
-def get_tele_core_data(sites):
-	data = {type:[0 for _ in range(7)] for type in avaya_types}
-	for site in sites:
-		data[site.avaya_type][site.site_size] += 1
-	data = {avaya_types_extended[i]:data[avaya_types[i]] for i in range(len(avaya_types))}
-	return data

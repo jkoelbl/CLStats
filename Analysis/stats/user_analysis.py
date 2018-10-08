@@ -2,22 +2,13 @@ from .auxillary_functions import *
 
 cs_types = ('contractors', 'staff')
 
-def get_platform_users(sites, platform_type='telephony_users'):
+def get_platform_users(sites, get_program_platform_total):
 	types = ('cisco','avaya','none')
 	users = {type:[0 for _ in range(7)] for type in types}
-	comp = ('basic','advanced','')
+	comp = ('basic','advanced')
 	for site in sites:
 		for program in site.programs:
-			pt = 'program.'+platform_type
-			type = eval(pt+'.platform')
-			if not type:	type = 'none'
-			
-			total = 0
-			if platform_type == 'contact_center':
-				if program.cc_complexity.complexity in comp and program.contact_center.total:
-					total += eval(pt+'.total')
-			else:
-				total = eval(pt+'.total')
+			type, total = get_program_platform_total(program)
 			users[type][site.site_size] += total
 	types_extended = ('Cisco','Avaya','None')
 	users = {types_extended[i]:users[types[i]] for i in range(len(types))}

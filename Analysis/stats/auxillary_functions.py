@@ -44,3 +44,17 @@ def determine_platform_combination(site):
 	elif not tele:	return cc+'cc'
 	elif not cc:	return tele
 	return tele+'+'+cc+'cc'
+
+def get_program_bis_platform_total(program):
+	type = program.telephony_users.platform
+	if not type:	type = 'none'
+	total = program.telephony_users.total
+	return type, total
+
+def get_program_cc_platform_total(program):
+	type = program.contact_center.platform
+	if not type:	type = 'none'
+	total = 0
+	if program.cc_complexity.complexity in comp and program.contact_center.total:
+		total = program.contact_center.total
+	return type, total

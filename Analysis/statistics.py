@@ -9,8 +9,8 @@ def get_site_size_analysis(regions):
 	return region_sizes, site_sizes, program_sizes, platform_sizes, cc_platform_sizes
 
 def get_user_analysis(regions):
-	bis_users = get_platform_users(regions, 'telephony_users')
-	cc_users = get_platform_users(regions, 'contact_center')
+	bis_users = get_platform_users(regions, get_program_bis_platform_total)
+	cc_users = get_platform_users(regions, get_program_cc_platform_total)
 	
 	site_sizes = get_site_sizes(get_regional_site_sizes(regions))
 	total_users = get_total_users(regions)
@@ -48,4 +48,7 @@ def get_lead_agency_analysis(regions):
 	return cc_types_extended, agency_per_type
 
 def get_tele_core_analysis(regions):
-	return get_tele_core_data(regions)
+	tele_core = get_tele_core_data(regions)
+	bis_tele_core = get_bis_tele_core_data(regions)
+	cc_tele_core = get_cc_tele_core_data(regions)
+	return tele_core, bis_tele_core, cc_tele_core
