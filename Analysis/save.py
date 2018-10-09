@@ -33,7 +33,7 @@ def encode_maplist_w_sum(maplist, include_sum=True):
 def encode_multimap(map_multilist, include_sum=True):
 	temp, first = '', True
 	for k,v in map_multilist.items():
-		if not first:	temp += '\n'
+		if not first:	temp += '\n\n'
 		temp += str(k)+'\n'+encode_maplist(v, include_sum)
 		first = False
 	return temp

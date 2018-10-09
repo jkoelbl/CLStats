@@ -17,9 +17,12 @@ def get_user_analysis(regions):
 	total_user_types = get_total_user_types(total_users)
 	cs = avg_contractors_staff(total_users, site_sizes)
 	omt = avg_user_types(total_users, site_sizes)
-	avg_workers_at_avaya = get_avg_users_at_avaya(regions)
-	return bis_users, cc_users, cs, omt, total_user_types, avg_workers_at_avaya
-
+	
+	types = ('A', 'A+Acc', 'C', 'C+Ccc')
+	types_extended = ('Avaya Business Only', 'Avaya Business with Avaya Contact Center Only', 'Cisco Business Only', 'Cisco Business with Cisco Contact Center Only')
+	avg_workers_with_setup = {types_extended[i]:get_avg_users_with_platform_combo(regions, types[i]) for i in range(len(types))}
+	return bis_users, cc_users, cs, omt, total_user_types, avg_workers_with_setup
+	
 def get_complexity_analysis(regions):
 	return get_site_complexities(regions)
 	
@@ -51,4 +54,5 @@ def get_tele_core_analysis(regions):
 	tele_core = get_tele_core_data(regions)
 	bis_tele_core = get_bis_tele_core_data(regions)
 	cc_tele_core = get_cc_tele_core_data(regions)
-	return tele_core, bis_tele_core, cc_tele_core
+	avg_tele_core_users = get_tele_core_users(regions)
+	return tele_core, bis_tele_core, cc_tele_core, avg_tele_core_users

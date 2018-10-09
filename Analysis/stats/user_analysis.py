@@ -54,18 +54,36 @@ def get_total_users_agents_at_site(site):
 	return sum([program.telephony_users.total for program in site.programs]), \
 			sum([program.contact_center.total for program in site.programs])
 
-def get_avg_users_at_avaya(sites):
+def get_avg_users_with_platform_combo(sites, combination):
 	user_types = ('Business Telephony Users','Contact Center Agents')
 	data = {type:[0 for _ in range(7)] for type in user_types}
 	total_sites = [0 for _ in range(7)]
 	for site in sites:
 		combo = determine_platform_combination(site)
-		if combo == 'A+Acc':
+		if combo == combination:
 			total_sites[site.site_size] += 1
 			users, agents = get_total_users_agents_at_site(site)
 			data['Business Telephony Users'][site.site_size] += users
 			data['Contact Center Agents'][site.site_size] += agents
 	for k in data.keys():
 		for i in range(7):
-			data[k][i] = round(data[k][i]/total_sites[i], 1)
+			total = total_sites[i] if total_sites[i] else 1
+			data[k][i] = round(data[k][i]/total, 1)
+	return data
+
+def get_avg_users_with_platform_combo_tele_core(sites, combination):
+	user_types = ('Business Telephony Users','Contact Center Agents')
+	data = {type:[0 for _ in range(7)] for type in user_types}
+	total_sites = [0 for _ in range(7)]
+	for site in sites:
+		combo = determine_platform_combination(site)
+		if combo == combination:
+			total_sites[site.site_size] += 1
+			users, agents = get_total_users_agents_at_site(site)
+			data['Business Telephony Users'][site.site_size] += users
+			data['Contact Center Agents'][site.site_size] += agents
+	for k in data.keys():
+		for i in range(7):
+			total = total_sites[i] if total_sites[i] else 1
+			data[k][i] = round(data[k][i]/total, 1)
 	return data

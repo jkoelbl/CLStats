@@ -58,3 +58,10 @@ def get_program_cc_platform_total(program):
 	if program.cc_complexity.complexity in comp and program.contact_center.total:
 		total = program.contact_center.total
 	return type, total
+
+def get_users_agents(site):
+	users, agents = 0, 0
+	for program in site.programs:
+		users += program.telephony_users.total
+		agents += program.contact_center.total
+	return users, agents
