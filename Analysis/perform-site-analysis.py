@@ -70,7 +70,6 @@ for k,v in avg_tele_core_users.items():
 
 # print output and save it in OUTFILE
 print(output)
-"""with open(OUTFILE, 'w') as file:
+with open(OUTFILE, 'w') as file:
 	file.truncate(0)
 	file.write(output)
-"""
