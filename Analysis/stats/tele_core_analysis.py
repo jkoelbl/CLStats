@@ -75,10 +75,10 @@ def get_tele_core_users(sites):
 		tele_core = get_tele_core(site)
 		combo = determine_platform_combination(site)
 		users, agents = get_users_agents(site)
-		if combo == 'A':	agents = 0
 		if combo in comb and tele_core in tele_types:
 			data[combo][tele_core]['bis users'][site.site_size] += users
-			data[combo][tele_core]['cc agents'][site.site_size] += agents
+			if combo not in ('A','C','C/A',''):
+				data[combo][tele_core]['cc agents'][site.site_size] += agents
 			total_sites[combo][tele_core][site.site_size] += 1
 	
 	data = get_avg_tele_core_users(data, total_sites)

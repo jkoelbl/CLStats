@@ -64,24 +64,8 @@ def get_avg_users_with_platform_combo(sites, combination):
 			total_sites[site.site_size] += 1
 			users, agents = get_total_users_agents_at_site(site)
 			data['Business Telephony Users'][site.site_size] += users
-			data['Contact Center Agents'][site.site_size] += agents
-	for k in data.keys():
-		for i in range(7):
-			total = total_sites[i] if total_sites[i] else 1
-			data[k][i] = round(data[k][i]/total, 1)
-	return data
-
-def get_avg_users_with_platform_combo_tele_core(sites, combination):
-	user_types = ('Business Telephony Users','Contact Center Agents')
-	data = {type:[0 for _ in range(7)] for type in user_types}
-	total_sites = [0 for _ in range(7)]
-	for site in sites:
-		combo = determine_platform_combination(site)
-		if combo == combination:
-			total_sites[site.site_size] += 1
-			users, agents = get_total_users_agents_at_site(site)
-			data['Business Telephony Users'][site.site_size] += users
-			data['Contact Center Agents'][site.site_size] += agents
+			if combo not in ('A','C','C/A',''):
+				data['Contact Center Agents'][site.site_size] += agents
 	for k in data.keys():
 		for i in range(7):
 			total = total_sites[i] if total_sites[i] else 1
