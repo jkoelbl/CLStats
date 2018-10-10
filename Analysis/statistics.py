@@ -1,4 +1,4 @@
-from stats import *
+from .stats import *
 
 def get_site_size_analysis(regions):
 	region_sizes = get_regional_site_sizes(regions)

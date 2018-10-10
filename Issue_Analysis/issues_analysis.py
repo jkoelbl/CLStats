@@ -1,6 +1,6 @@
-from find_issues import get_issues, load_possible_issues
-from classes import site
 import sys,os
+from .classes import site
+from .find_issues import get_issues, load_possible_issues
 
 OUTPUT = 'Results - Issues.csv'
 
@@ -28,7 +28,7 @@ def load_data_from_file(file):
 		return site_sh(wb)
 	return site_new(wb)	# is current survey
 
-def write_to_output(issues):
+def write_to_output(issues, folders):
 	with open(OUTPUT, 'w') as output:
 		output.truncate(0)
 		for i in range(len(folders)):
@@ -37,12 +37,12 @@ def write_to_output(issues):
 			for issue in issues[folders[i]]:
 				output.write(issue+'\n')
 
-def main():
+def get_issues():
 	folders = get_folders()
 	files = get_files(folders)
 	surveys = {folder:[load_data_from_file(file) for file in files[folder]] for folder in folders}
 	issues = {folder:[find_issues(survey) for survey in surveys[folder]] for folder in folders}
-	write_to_output(issues)
+	write_to_output(issues, folders)
 	print('0')
 
-main()
+get_issues()

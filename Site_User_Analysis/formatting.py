@@ -1,5 +1,5 @@
 import os,csv
-from classes import site
+from .classes import site
 
 # check if two rows are duplicates
 def is_dupe(ref, row):

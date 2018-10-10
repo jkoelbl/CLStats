@@ -1,22 +1,19 @@
 import csv,os
-from formatting import load_data
+from .formatting import load_data
 
-past_dir = os.getcwd()
-os.chdir('../../CSVs/')
-ROOT = os.getcwd()+'/'
-os.chdir(past_dir)
-
+ROOT = 'C:\\Users\\acesp\\Desktop\\Site Survey Responses\\CSVs/'
 base_files = ('Moreton (1-100)','Moreton (101+)','Winters (1-100)','Winters (101+)')
 PATHS = [ROOT+'Tele Core Sites/'+file+'.csv' for file in base_files]
 SITES = ROOT+'Site Summary 100418 v4.csv'
 GATEWAYS = ROOT+'Site Status 100518 v1.csv'
+tSize = ('XXS','XS','S','M','L','XL','XXL')
 
 def init_files():
 	for path in PATHS:
 		open(path,'w').close()
 	files = [open(path, 'a') for path in PATHS]
 	for file in files:
-		file.write('\"Site ID\",\"Total business Users\",\"Total CC Agents\",G430,G450,G650,G700')
+		file.write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total business Users\",\"Total CC Agents\",G430,G450,G650,G700,Total Users')
 	return files
 	
 	
@@ -60,21 +57,24 @@ def get_base_critera(site):
 def add_to_file(site, gateways, files):
 	criteria = get_base_critera(site)
 	users, agents = get_total_users_agents(site)
+	tshirt = tSize[site.site_size]
 	gtw = ['','','','']
 	
 	if criteria=='':	return
-	if get_combo(site) == 'A':	agents = '-'
+	if get_combo(site) == 'A':	agents = ''
 	if str(int(site.id)) in gateways:	gtw = gateways[str(int(site.id))]
 	else:	print('issue:', str(site.id), 'not in gateways list')
 	
-	group = [int(site.id), users, agents] + gtw
+	group = [int(site.id), '\"'+site.addr+'\"', tshirt, users, agents] + gtw + [site.total]
 	output = ','.join([str(g) for g in group])
 	files[criteria].write('\n'+output)
-	
-if __name__ == '__main__':
+
+def user_summary():
 	files = init_files()
 	sites = load_data(SITES)
 	gateways = get_gateways(GATEWAYS)
 	for site in sites:	add_to_file(site, gateways, files)
 	for file in files:	file.close()
 	print('done')
+
+user_summary()

@@ -90,6 +90,7 @@ class program:
 class site:
 	def __init__(self, data):
 		self.id = data[0]
+		self.addr = data[1]
 		self.avaya_type = data[2] if data[2] else ''
 		self.region = data[5]
 		self.lead_agency = data[6]
