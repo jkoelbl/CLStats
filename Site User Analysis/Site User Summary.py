@@ -33,7 +33,7 @@ def get_total_users_agents(site):
 	return users, agents
 	
 def get_combo(site):
-	comb = ('basic','advanced')
+	comp = ('basic','advanced')
 	temp_b, temp_cc = {}, {}
 	for program in site.programs:
 		temp_b[program.telephony_users.platform] = None
@@ -46,14 +46,15 @@ def get_combo(site):
 	return ''
 
 def get_base_critera(site):
+	moreton = ('moreton core','remote moreton')
+	winters = ('winters core','remote winters')
 	index = 0
-	if site.avaya_type in ('moreton core','remote moreton'):
-		index = 0
-	elif site.avaya_type in ('winters core','remote winters'):
-		index = 2
+	if get_combo(site) not in ('A','A+Acc'):	return ''
+	if site.avaya_type in moreton:	index = 0
+	elif site.avaya_type in winters:	index = 2
 	else:	return ''
 	
-	if site.site_size<3:	return index
+	if site.site_size<4:	return index
 	else:	return index+1
 
 def add_to_file(site, gateways, files):
@@ -62,7 +63,7 @@ def add_to_file(site, gateways, files):
 	gtw = ['','','','']
 	
 	if criteria=='':	return
-	if criteria in (0,2):	agents = '-'
+	if get_combo(site) == 'A':	agents = '-'
 	if str(int(site.id)) in gateways:	gtw = gateways[str(int(site.id))]
 	else:	print('issue:', str(site.id), 'not in gateways list')
 	
