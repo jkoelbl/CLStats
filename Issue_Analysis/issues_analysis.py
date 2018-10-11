@@ -45,4 +45,5 @@ def get_issues():
 	write_to_output(issues, folders)
 	print('0')
 
-get_issues()
+if __name__ == '__main__':
+	get_issues()

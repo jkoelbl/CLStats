@@ -74,4 +74,5 @@ def get_all_data():
 	sites = do_threading(PATHS)
 	write_to_file(sites)
 
-get_all_data()
+if __name__ == '__main__':
+	get_all_data()

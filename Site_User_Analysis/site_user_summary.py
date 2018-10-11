@@ -40,6 +40,8 @@ def get_combo(site):
 		if 'avaya' in temp_cc and 'cisco' not in temp_cc:
 			return 'A+Acc'
 		return 'A'
+	if 'avaya' in temp_cc and 'cisco' not in temp_cc:
+		return 'Acc'
 	return ''
 
 def get_base_critera(site):
@@ -62,6 +64,7 @@ def add_to_file(site, gateways, files):
 	
 	if criteria=='':	return
 	if get_combo(site) == 'A':	agents = ''
+	if get_combo(site) == 'Acc':	users = ''
 	if str(int(site.id)) in gateways:	gtw = gateways[str(int(site.id))]
 	else:	print('issue:', str(site.id), 'not in gateways list')
 	
@@ -77,4 +80,5 @@ def user_summary():
 	for file in files:	file.close()
 	print('done')
 
-user_summary()
+if __name__ == '__main__':
+	user_summary()

@@ -77,4 +77,5 @@ def site_analysis():
 		file.truncate(0)
 		file.write(output)
 
-site_analysis()
+if __name__ == '__main__':
+	site_analysis()
