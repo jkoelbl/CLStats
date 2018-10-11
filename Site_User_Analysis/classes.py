@@ -34,7 +34,9 @@ class platform_details:
 		self.platform = data[0]
 		self.contractors = [data[1], data[3], data[5]]
 		self.staff = [data[2], data[4], data[6]]
-		self.total = sum(self.contractors) + sum(self.staff)
+		self.total = data[7]
+		if not self.total:
+			self.total = sum(self.contractors+self.staff)
 
 	def __str__(self):
 		temp = self.platform
@@ -58,13 +60,10 @@ class program:
 		self.is_247 = (data[2] == '24/7')
 		self.bis_func = self.get_bis_func(data[3:14])
 		self.events = data[14]
-		self.telephony_users = platform_details(data[15:22])
-		self.contact_center = platform_details(data[24:31])
+		self.telephony_users = platform_details(data[15:23])
+		self.contact_center = platform_details(data[24:32])
 		self.cc_complexity = cc_complexity(data[32:35])
 		self.reporting = data[35]
-		if is_zero(data[25:31]) and not self.bis_func[5]:
-			self.contact_center = platform_details(['',0,0,0,0,0,0])
-			self.cc_complexity = cc_complexity(['','',''])
 
 	def get_bis_func(self, data):
 		list = [True for _ in data]

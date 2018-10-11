@@ -33,6 +33,23 @@ def refine_sites():
 		map[key][combo] = [map[key][combo][i]+ua[i] for i in range(4)]
 	return map
 
-for core,value in refine_sites().items():
-	print(core)
-	[print('   ',k,v) for k,v in value.items()]
+def print_mix():
+	map = refine_sites()
+	maps = [{} for _ in range(6)]
+	for k,v in map.items():
+		index = 0
+		if k in ('remote moreton','remote winters','moreton core','winters core'):
+			index = 3
+		for c,data in v.items():
+			if c in ('A','A+Acc','Acc'):
+				maps[0+index][c] = data
+			elif c in ('C','C+Ccc','Ccc'):
+				maps[1+index][c] = data
+			else:
+				maps[2+index][c] = data
+	types = ('cores+avaya','cores+cisco','cores+other','noncores+avaya','noncores+cisco','noncores+other')
+	for i in range(len(maps)):
+		print(types[i])
+		[print('\t\''+k+'\'\t'+str(v)) for k,v in maps[i].items()]
+
+print_mix()
