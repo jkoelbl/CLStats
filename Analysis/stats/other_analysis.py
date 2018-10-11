@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 cc_types = ('C', 'C+Ccc', 'C+Acc', 'C+C/Acc', \
 			'A', 'A+Ccc', 'A+Acc', 'A+C/Acc', \

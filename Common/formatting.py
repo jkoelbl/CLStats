@@ -97,7 +97,7 @@ def load_data(path):
 	list_csv = fill_missing_bis_func(list_csv)
 	list_csv = fix_platforms(list_csv)
 	list_csv = adjust_for_dupes(list_csv)
-	return make_classes(list_csv[3:])
+	return list_csv
 
 # converts data list into site objects
 def make_classes(list_csv):

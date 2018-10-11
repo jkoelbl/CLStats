@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 access_types = ('ethernet', \
 				'isdn pri', \

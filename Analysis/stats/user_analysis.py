@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 cs_types = ('contractors', 'staff')
 

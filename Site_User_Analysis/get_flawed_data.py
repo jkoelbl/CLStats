@@ -1,6 +1,6 @@
 import csv,os
-from Analysis.stats.auxillary_functions import *
-from Site_User_Analysis.formatting import load_data
+from Common.auxillary_functions import *
+from Common.formatting import *
 from Site_User_Analysis import *
 
 ROOT = 'C:\\Users\\acesp\\Desktop\\Site Survey Responses\\CSVs/'
@@ -103,6 +103,7 @@ def add_to_file(site, gateways, files):
 def user_summary():
 	files = init_files(PATHS, ADD_CISCO_NUMBERS)
 	sites = load_data(SITES)
+	sites = make_classes(sites)
 	gateways = get_gateways(GATEWAYS)
 	for site in sites:	add_to_file(site, gateways, files)
 	for file in files:	file.close()

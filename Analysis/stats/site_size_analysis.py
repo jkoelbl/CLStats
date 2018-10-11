@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 platform_types = ('cisco', 'avaya', 'both', 'none')
 platform_types_extended = ('Cisco', 'Avaya', 'Both', 'None')

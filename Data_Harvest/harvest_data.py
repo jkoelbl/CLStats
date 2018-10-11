@@ -1,5 +1,5 @@
 import openpyxl, sys, os, threading, time
-from .classes import site_new, site_old, site_sh
+from Common.classes_harvest import site_new, site_old, site_sh
 
 def get_root():
 	past_root = os.getcwd()

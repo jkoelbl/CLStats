@@ -1,4 +1,13 @@
 comp = ('basic', 'advanced')
+moreton = ('moreton core','remote moreton','moreton')
+winters = ('winters core','remote winters','winters')
+
+def get_tele_core(site):
+	if site.avaya_type in moreton:
+		return 'moreton'
+	if site.avaya_type in winters:
+		return 'winters'
+	return ''
 
 def sort_map(map):
 	return {item:map[item] for item in sorted([k for k in map.keys()])}

@@ -1,7 +1,11 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
-avaya_types = ('winters core','moreton core','remote winters','remote moreton','self','')
-avaya_types_extended = ('Winters CORE','Moreton CORE','Remote Winters','Remote Moreton','Self','None')
+avaya_types = ('winters core','moreton core','remote winters','remote moreton','self','','moreton','winters')
+avaya_types_extended = ('Winters CORE','Moreton CORE','Remote Winters','Remote Moreton','Self','None','Moreton','Winters')
+tele_types = ('moreton', 'winters')
+tele_types_extended = ('Moreton Sites', 'Winters Sites')
+moreton = ('moreton core','remote moreton','moreton')
+winters = ('winters core','remote winters','winters')
 
 def get_tele_core_data(sites):
 	data = {type:[0 for _ in range(7)] for type in avaya_types}
@@ -28,15 +32,7 @@ def get_cc_tele_core_data(sites):
 	data = {avaya_types_extended[i]:data[avaya_types[i]] for i in range(len(avaya_types))}
 	return data
 
-def get_tele_core(site):
-	if site.avaya_type in ('moreton core','remote moreton'):
-		return 'moreton'
-	if site.avaya_type in ('winters core','remote winters'):
-		return 'winters'
-	return ''
-
 def get_avg_tele_core_users(data, total_sites):
-	tele_types = ('moreton', 'winters')
 	comb = ('A','A+Acc')
 	for combo in comb:
 		for type in tele_types:
@@ -47,8 +43,6 @@ def get_avg_tele_core_users(data, total_sites):
 	return data
 
 def format_avg_tele_core_users(data):
-	tele_types = ('moreton', 'winters')
-	tele_types_extended = ('Moreton Sites', 'Winters Sites')
 	comb = ('A','A+Acc')
 	comb_extended = ('Avaya Business Only', 'Avaya Business with Avaya Contact Center Only')
 	user_types = ('bis users','cc agents')
@@ -65,7 +59,6 @@ def format_avg_tele_core_users(data):
 	return data
 
 def get_tele_core_users(sites):
-	tele_types = ('moreton', 'winters')
 	comb = ('A','A+Acc')
 	user_types = ('bis users','cc agents')
 	data = {combo:{type:{user:[0 for _ in range(7)] for user in user_types} for type in tele_types} for combo in comb}

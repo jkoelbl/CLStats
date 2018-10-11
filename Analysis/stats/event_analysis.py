@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 event_types = ('offsite', 'recording', 'redirected', 'multiple', 'none')
 event_types_extended = ('Calls Handled by Workers at Other Sites', \

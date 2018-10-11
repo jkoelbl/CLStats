@@ -1,4 +1,4 @@
-from .auxillary_functions import *
+from Common.auxillary_functions import *
 
 complexity_types_extended = ('Basic/Advanced', 'Low Only', 'None')
 response_types_extended = ('Lobby Area', \

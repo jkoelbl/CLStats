@@ -1,5 +1,5 @@
 import os,csv
-from .classes import site
+from .classes_v2 import site
 
 # check if two rows are duplicates
 def is_dupe(ref, row):
@@ -20,7 +20,7 @@ def get_raw_data(path):
 	with open(path, newline='') as file:
 		reader = csv.reader(file, delimiter=',', quotechar='\"')
 		list = [[item.strip() for item in row] for row in reader if not is_empty(row)]
-		return list[2:]
+		return list[:]	#[2:]
 
 # convert numbers to ints
 def convert_nums(list_csv):
@@ -63,7 +63,7 @@ def fill_missing_num_data(list_csv):
 	for row in list_csv:
 		for i in range(23,29):
 			if not row[i]:	row[i] = 0
-			if not row[i+9]:	row[i+9] = 0
+			if not row[i+7]:	row[i+7] = 0	#+9
 	return list_csv
 
 # modify duplicates for uniqueness
@@ -83,20 +83,20 @@ def fix_platforms(list_csv):
 	cisco = ['cisco', 'cicso', 'hsc', 'hcs']
 	for row in list_csv:
 		if row[22].lower() in cisco:	row[22] = 'cisco'
-		if row[31].lower() in cisco:	row[31] = 'cisco'
+		if row[29].lower() in cisco:	row[29] = 'cisco'	#31
 	return list_csv
 
 # loads the data into a formatted 2d-list
 def load_data(path):
 	list_csv = get_raw_data(path)
 	list_csv = remove_empties(list_csv)
-	list_csv = fill_missing_num_data(list_csv)
-	list_csv = convert_nums(list_csv)
 	list_csv = fill_missing_site_data(list_csv)
 	list_csv = fill_missing_bis_func(list_csv)
 	list_csv = fix_platforms(list_csv)
+	list_csv = fill_missing_num_data(list_csv)
+	list_csv = convert_nums(list_csv)
 	list_csv = adjust_for_dupes(list_csv)
-	return make_classes(list_csv)
+	return list_csv[1:]
 
 # converts data list into site objects
 def make_classes(list_csv):

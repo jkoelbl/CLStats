@@ -35,6 +35,8 @@ class platform_details:
 		self.contractors = [data[1], data[3], data[5]]
 		self.staff = [data[2], data[4], data[6]]
 		self.total = sum(self.contractors) + sum(self.staff)
+		if self.contractors == self.staff and self.staff == [0,0,0]:
+			self.platform == ''
 
 	def __str__(self):
 		temp = self.platform
@@ -62,8 +64,7 @@ class program:
 		self.contact_center = platform_details(data[22:29])	#24-31
 		self.cc_complexity = cc_complexity(data[29:32])		#32-35
 		self.reporting = data[32]							#35
-		if is_zero(data[23:29]) and not self.bis_func[5]:	#25-31
-			self.contact_center = platform_details(['',0,0,0,0,0,0])
+		if data[22:29] == [0,0,0,0,0,0]:					#25-31
 			self.cc_complexity = cc_complexity(['','',''])
 
 	def get_bis_func(self, data):

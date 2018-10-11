@@ -7,7 +7,7 @@
 
 from .save import *
 from .statistics import *
-from .formatting import load_data
+from Common.formatting import *
 
 ROOT = 'C:\\Users\\acesp\\Desktop\\Site Survey Responses\\CSVs/'
 INFILE = ROOT+'Site Summary 100418 v4.csv'
@@ -17,6 +17,7 @@ def site_analysis():
 
 	# load data and convert to classes
 	sites = load_data(INFILE)
+	sites = make_classes(sites)
 
 
 	# perform analyses
