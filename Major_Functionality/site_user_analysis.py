@@ -20,7 +20,7 @@ def init_files(paths, add_cisco):
 	files = [open(path, 'a') for path in PATHS]
 	for i in range(len(files)):
 		if add_cisco[i]:
-			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",\"Total Cisco Business Users\",\"Total Cisco Business Agents\",G430,G450,G650,G700,Total Users')
+			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",\"Total Cisco Business Users\",\"Total Cisco Business Agents\",G430,G450,G650,G700,\"Total Avaya Users\",\"Total Cisco Users\"')
 		else:
 			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",G430,G450,G650,G700,Total Users')
 	return files
@@ -88,7 +88,7 @@ def add_to_file(site, gateways, files):
 	else:
 		group += refine_ua(ua, combo)
 		group += gtw
-		group += [sum(ua)]
+		group += [sum(ua[:2]), sum(ua[2:])]
 	output = ','.join([str(g) for g in group])
 	files[criteria].write('\n'+output)
 
