@@ -17,8 +17,9 @@ def get_complexity(site_complexities, site):
 	temp, comp = {}, ''
 	for program in site.programs:
 		if program.cc_complexity.complexity:
-			comp = program.cc_complexity.complexity
-			temp[comp] = None
+			if program.contact_center.platform and program.contact_center.total:
+				comp = program.cc_complexity.complexity
+				temp[comp] = None
 	if not len(temp):	return 'None'
 	if 'advanced' in temp or 'basic' in temp:	return 'Basic/Advanced'
 	return 'Low Only'

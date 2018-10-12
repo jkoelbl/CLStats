@@ -1,5 +1,4 @@
 """
-	-add update data
 	-number of sites used (eventually)
 	-add survivablitity in data (not sure)
 	-add 2 columns: "is survivable (y,n)" and "survivable type"
