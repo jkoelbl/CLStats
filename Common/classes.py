@@ -55,10 +55,10 @@ class program:
 		self.contact_center = platform_details(data[24:32])
 		self.cc_complexity = cc_complexity(data[32:35])
 		self.reporting = data[35]
-		"""if data[25:32] == [0,0,0,0,0,0,0] and not self.bis_func[5]:
+		if data[25:32] == [0,0,0,0,0,0,0]:
 			self.platform = ''
 			self.cc_complexity = cc_complexity(['','',''])
-"""
+
 	def get_bis_func(self, data):
 		return [e == 'yes' for e in data]
 	
