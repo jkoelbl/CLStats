@@ -1,7 +1,7 @@
 from Common.auxillary_functions import *
 
-avaya_types = ('winters core','moreton core','remote winters','remote moreton','self','','moreton','winters')
-avaya_types_extended = ('Winters CORE','Moreton CORE','Remote Winters','Remote Moreton','Self','None','Moreton','Winters')
+avaya_types = ('winters core','moreton core','remote winters','remote moreton','winters','moreton','self','')
+avaya_types_extended = ('Winters CORE','Moreton CORE','Remote Winters','Remote Moreton','Winters','Moreton','Self','None')
 tele_types = ('moreton', 'winters')
 tele_types_extended = ('Moreton Sites', 'Winters Sites')
 moreton = ('moreton core','remote moreton','moreton')

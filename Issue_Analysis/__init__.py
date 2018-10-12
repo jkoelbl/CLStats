@@ -1,1 +1,2 @@
-from .issues_analysis import get_issues
+from .classes import *
+from .find_issues import *

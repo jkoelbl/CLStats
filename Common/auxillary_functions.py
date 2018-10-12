@@ -63,10 +63,9 @@ def get_program_bis_platform_total(program):
 def get_program_cc_platform_total(program):
 	type = program.contact_center.platform
 	if not type:	type = 'none'
-	total = 0
 	if program.cc_complexity.complexity in comp and program.contact_center.total:
-		total = program.contact_center.total
-	return type, total
+		return type, program.contact_center.total
+	return type, 0
 
 def get_users_agents(site):
 	users, agents = 0, 0

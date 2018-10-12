@@ -24,9 +24,8 @@ class cc_complexity:
 		self.reporting = data[2]
 
 	def __str__(self):
-		return self.agent_type + ',' + \
-			self.complexity + ',' + \
-			self.reporting
+		group = [self.agent_type, self.complexity, self.reporting]
+		return ','.join([str(g) for g in group])
 			
 
 class platform_details:
@@ -37,23 +36,13 @@ class platform_details:
 		self.total = data[7]
 		if not self.total:
 			self.total = sum(self.contractors+self.staff)
-		if self.contractors == self.staff and self.staff == [0,0,0]:
-			self.platform = ''
 
 	def __str__(self):
-		temp = self.platform
-		for c in self.contractors:
-			temp += ',' + str(c)
-		for s in self.staff:
-			temp += ',' + str(s)
-		temp += ',' + str(self.total)
-		return temp
+		group = [self.platform]+self.contractors+self.staff+[self.total]
+		return ','.join([str(g) for g in group])
 
 def is_zero(list):
-	for item in list:
-		if item:
-			return False
-	return True
+	return sum([1 for e in list if e])
 
 class program:
 	def __init__(self, data):
@@ -66,28 +55,18 @@ class program:
 		self.contact_center = platform_details(data[24:32])
 		self.cc_complexity = cc_complexity(data[32:35])
 		self.reporting = data[35]
-		if data[25:32] == [0,0,0,0,0,0,0]:
+		"""if data[25:32] == [0,0,0,0,0,0,0] and not self.bis_func[5]:
+			self.platform = ''
 			self.cc_complexity = cc_complexity(['','',''])
-
+"""
 	def get_bis_func(self, data):
-		list = [True for _ in data]
-		for i in range(len(data)):
-			list[i] = (data[i] == 'yes')
-		return list
+		return [e == 'yes' for e in data]
 	
 	def __str__(self):
-		temp = str(self.name) + ',' + str(self.agency)
-		temp += ',' + str(self.is_247)
-		temp += ',' + str(self.events)
-		temp += '\n    '
-		for i in range(len(self.bis_func)):
-			if i:	temp += ','
-			temp += str(self.bis_func[i])
-		temp += '\n    ' + str(self.telephony_users)
-		temp += '\n    ' + str(self.contact_center)
-		temp += '\n    ' + str(self.cc_complexity)
-		temp += '\n    ' + str(self.reporting)
-		return temp
+		group = [self.name, self.agency, self.is_247, events]
+		group2 = [','.join(self.bis_func), self.telephony_users, self.contact_center, self.cc_complexity, self.reporting]
+		return ','.join([str(g) for g in group]) + \
+				'\n    '.join([str(g) for g in group])
 
 
 class site:
@@ -98,11 +77,7 @@ class site:
 		self.region = data[5]
 		self.lead_agency = data[6]
 		self.total = 0
-		
-		data[3] = data[3].strip()
-		if not data[3]:	data[3] = 'none'
-		self.is_leased = data[3]
-		
+		self.is_leased = data[3] if data[3] else 'none'
 		self.programs = []
 		self.site_size = 0
 
@@ -122,12 +97,9 @@ class site:
 		self.site_size = self.get_site_size()
 
 	def __str__(self):
-		temp = str(self.id)
-		temp += ',' + str(self.is_leased)
-		temp += ',' + str(self.region)
-		temp += ',' + str(self.lead_agency)
-		temp += ',' + str(self.total)
-		temp += ',' + str(self.site_size)
-		for program in self.programs:
-			temp += '\n  ' + str(program)
-		return temp + '\n'
+		group = (self.id, self.addr, self.avaya_type, \
+				self.is_leased, self.region, self.lead_agency, \
+				self.total, self.site_size)
+		group2 = [''] + self.programs
+		return ','.join([str(g) for g in group]) + \
+				'\n '.join([str(g) for g in group2])+'\n'

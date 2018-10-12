@@ -3,23 +3,17 @@ from .classes import site
 
 # check if two rows are duplicates
 def is_dupe(ref, row):
-	for i in range(len(ref)):
-		if row[i] != ref[i]:
-			return False
-	return True
+	return not sum([1 for i in range(len(ref)) if row[i] != ref[i]])
 
 # check if a row is empty
 def is_empty(row):
-	for i in range(len(row)):
-		if row[i]:
-			return False
-	return True
+	return not sum([1 for e in row if e])
 
 # open csv and read raw data
 def get_raw_data(path):
 	with open(path, newline='') as file:
 		reader = csv.reader(file, delimiter=',', quotechar='\"')
-
+		
 		list = [[item.strip() for item in row] for row in reader if not is_empty(row)]
 		return list[2:]
 
