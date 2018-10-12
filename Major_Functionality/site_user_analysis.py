@@ -11,7 +11,7 @@ tSize = ('XXS','XS','S','M','L','XL','XXL')
 moreton = ('moreton core','remote moreton','moreton')
 winters = ('winters core','remote winters','winters')
 ADD_CISCO_NUMBERS = [0,0,0,0,1,1,1,1,1,1,0]
-cisco = ('C','Ccc','C+Ccc')
+cisco = ('C','Ccc','C+Ccc','')
 avaya = ('A','Acc','A+Acc')
 
 def init_files(paths, add_cisco):
@@ -28,7 +28,7 @@ def init_files(paths, add_cisco):
 def get_gateways(path):
 	with open(path, newline='') as file:
 		reader = csv.reader(file, delimiter=',', quotechar='\"')
-		return {str(row[0]):row[19:23] for row in reader}
+		return {(str(row[0]), row[1]):row[19:23] for row in reader}
 
 def get_total_users_agents(site):
 	ua = [0,0,0,0]
@@ -47,7 +47,7 @@ def get_total_users_agents(site):
 
 def get_base_critera(site, combo):
 	index = 0
-	if combo in cisco or combo == '':	return ''
+	if combo in cisco:	return ''
 	
 	if site.avaya_type in moreton:
 		if combo in avaya:	index = 0
@@ -75,9 +75,13 @@ def add_to_file(site, gateways, files):
 	gtw = ['','','','']
 	group = [site.id, '\"'+site.addr+'\"', tshirt]
 	
+	if len(str(site.id).split('.')) > 1:
+		site.id = str(site.id).split('.')[0]
+	key = (str(site.id), site.addr)
+	
 	if criteria=='':	return
-	if str(site.id) in gateways:
-		gtw = gateways[str(site.id)]
+	if key in gateways:
+		gtw = gateways[key]
 	else:
 		print('issue:', str(site.id), 'not in gateways list')
 	
