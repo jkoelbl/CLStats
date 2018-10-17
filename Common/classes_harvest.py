@@ -49,6 +49,7 @@ class program:
 		self.agents = [modify(ws[command].value) for command in commands[37]]
 		self.complexity = self.get_complexity(ws, commands[38:42])
 		self.reporting = self.get_reporting(ws, commands[42:46])
+		self.poe = self.get_poe(ws, commands[47], commands[46])
 	
 	def get_operations(self, ws, list):
 		list = [str(ws[item].value).lower() for item in list]
@@ -90,13 +91,27 @@ class program:
 		if 'yes' in list[:2]:	return 'Standard'
 		return 'None'
 	
+	def get_poe(self, ws, commands, detection):
+		list = []
+		for i in range(len(commands)):
+			detect = ws[detection[i]].value
+			if detect and str(detect).strip:
+				list.append(str(ws[commands[i]].value).lower())
+		
+		selects = sum([1 for e in list if e == 'select'])
+		yeses = sum([1 for e in list if e == 'yes'])
+		noes = sum([1 for e in list if e == 'no'])
+		if yeses:	return 'Yes'
+		if selects:	return ''
+		return 'No'
+	
 	def __str__(self):
 		group = (self.agency, '\"'+self.name+'\"', self.operations, \
 				','.join(self.business_functions), self.contingencies, \
 				self.telephony_platform, ','.join(self.tele_users), \
 				self.cc_platform, ','.join(self.agents), \
 				self.agent_types, self.complexity, self.reporting, \
-				','.join(self.connectivity))
+				','.join(self.connectivity), self.poe)
 		return ','.join(group)
 
 		
@@ -109,7 +124,9 @@ OLD = ('E32','C5','E30','C25','C5','C6','D6', \
 		('E61','F61','H61','E63','F63','H63','E62','F62','H62'), \
 		'D68','E84', \
 		('E74','F74','H74','E76','F76','H76','E75','F75','H75'), \
-		'E80','E79','E78','E81','K82','K83','K80','K81')
+		'E80','E79','E78','E81','K82','K83','K80','K81', \
+		('I39', 'I42', 'I45' , 'I48'), \
+		('K41', 'K44', 'K47', 'K50'))
 NEW = ('E3','C9','E5','E4','C5','C6','D6', \
 		'C13','C14','C15','C16','C17','C18','C19', \
 		'E13','E14','E15','E16','E17','E18','E19', \
@@ -119,7 +136,9 @@ NEW = ('E3','C9','E5','E4','C5','C6','D6', \
 		('C56','D56','C58','D58','C57','D57'), \
 		'D63','E66', \
 		('C72','D72','C74','D74','C73','D73'), \
-		'E78','E77','E75','E79','K79','K80','K77','K78')
+		'E78','E77','E75','E79','K79','K80','K77','K78', \
+		('I33', 'I36', 'I39', 'I42'), \
+		('K35', 'K38', 'K41', 'K44'))
 SH = ('E3','C9','E5','E4','C5','C6','D6', \
 		'C13','C14','C15','C16','C17','C18','C19', \
 		'E13','E14','E15','E16','E17','E18','E19', \
@@ -129,7 +148,9 @@ SH = ('E3','C9','E5','E4','C5','C6','D6', \
 		('C80','D80','C82','D82','C81','D81'), \
 		'D87','E90', \
 		('C96','D96','C98','D98','C97','D97'), \
-		'E102','E101','E100','E103','E103','E104','E101','E102')
+		'E102','E101','E100','E103','E103','E104','E101','E102', \
+		('I33', 'I36', 'I39', 'I42', 'I45', 'I47', 'I50', 'I53', 'I56', 'I59', 'I62', 'I65'), \
+		('K35', 'K38', 'K41', 'K44', 'K47', 'K50', 'K53', 'K56', 'K59', 'K62', 'K65', 'K68'))
 DETECTION_OLD = ('C16','C17','C18','C19','C20','C21','C22','C23')
 DETECTION_NEW = ('B21','B22','B23','B24','B25','B26','B27','B28','B29','B30','B31','B32')
 

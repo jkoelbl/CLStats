@@ -55,6 +55,7 @@ class program:
 		self.contact_center = platform_details(data[24:32])
 		self.cc_complexity = cc_complexity(data[32:35])
 		self.reporting = data[35]
+		self.poe = data[37]
 		if data[25:32] == [0,0,0,0,0,0,0]:
 			self.platform = ''
 			self.cc_complexity = cc_complexity(['','',''])
@@ -74,12 +75,13 @@ class site:
 		self.id = data[0]
 		self.addr = data[1]
 		self.avaya_type = data[2] if data[2] else ''
+		self.is_leased = data[3] if data[3] else 'none'
 		self.region = data[5]
 		self.lead_agency = data[6]
+		self.poe_capable = ''
 		self.total = 0
-		self.is_leased = data[3] if data[3] else 'none'
-		self.programs = []
 		self.site_size = 0
+		self.programs = []
 
 	def get_site_size(self):
 		if self.total <= 10:	return 0
@@ -95,11 +97,21 @@ class site:
 		self.total += self.programs[-1].telephony_users.total
 		self.total += self.programs[-1].contact_center.total
 		self.site_size = self.get_site_size()
+		self.poe_capable = self.get_poe_capability()
+	
+	def get_poe_capability(self):
+		blanks = ([sum([1 for poe in program.poe if poe == '']) for program in self.programs])
+		yeses = ([sum([1 for poe in program.poe if poe == 'Yes']) for program in self.programs])
+		noes = ([sum([1 for poe in program.poe if poe == 'No']) for program in self.programs])
+		if yeses and not noes:	return 'Yes'
+		if yeses and noes:	return 'Some'
+		if noes:	return 'No'
+		return ''
 
 	def __str__(self):
 		group = (self.id, self.addr, self.avaya_type, \
 				self.is_leased, self.region, self.lead_agency, \
-				self.total, self.site_size)
+				self.total, self.site_size, self.poe_capable)
 		group2 = [''] + self.programs
 		return ','.join([str(g) for g in group]) + \
 				'\n '.join([str(g) for g in group2])+'\n'

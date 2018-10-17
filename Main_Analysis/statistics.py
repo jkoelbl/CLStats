@@ -56,3 +56,6 @@ def get_tele_core_analysis(regions):
 	cc_tele_core = get_cc_tele_core_data(regions)
 	avg_tele_core_users = get_tele_core_users(regions)
 	return tele_core, bis_tele_core, cc_tele_core, avg_tele_core_users
+	
+def get_poe_capability_analysis(regions):
+	return get_poe(regions)

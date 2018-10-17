@@ -20,9 +20,9 @@ def init_files(paths, add_cisco):
 	files = [open(path, 'a') for path in PATHS]
 	for i in range(len(files)):
 		if add_cisco[i]:
-			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",\"Total Cisco Business Users\",\"Total Cisco Business Agents\",G430,G450,G650,G700,\"Total Avaya Users\",\"Total Cisco Users\"')
+			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",\"Total Cisco Business Users\",\"Total Cisco CC Agents\",G430,G450,G650,G700,\"Total Avaya Users\",\"Total Cisco Users\",\"POE Capability\"')
 		else:
-			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",G430,G450,G650,G700,Total Users')
+			files[i].write('\"Site ID\",\"Address\",\"t-Shirt\",\"Total Avaya Business Users\",\"Total Avaya CC Agents\",G430,G450,G650,G700,\"Total Users\",\"POE Capability\"')
 	return files
 
 def get_gateways(path):
@@ -85,13 +85,9 @@ def add_to_file(site, gateways, files):
 		print('issue:', str(site.id), 'not in gateways list')
 	
 	if criteria in (0,1,2,3,10):
-		group += refine_ua(ua[:2], combo)
-		group += gtw
-		group += [sum(ua[:2])]
+		group += refine_ua(ua[:2], combo) + gtw + [sum(ua[:2]), site.poe_capable]
 	else:
-		group += refine_ua(ua, combo)
-		group += gtw
-		group += [sum(ua[:2]), sum(ua[2:])]
+		group += refine_ua(ua, combo) + gtw + [sum(ua[:2]), sum(ua[2:]), site.poe_capable]
 	output = ','.join([str(g) for g in group])
 	files[criteria].write('\n'+output)
 

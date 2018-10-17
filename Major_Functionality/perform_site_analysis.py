@@ -30,6 +30,7 @@ def site_analysis():
 	bis_cc_type, bis_cc_type_connectivity = get_bis_cc_analysis(sites)
 	cc_types_extended, agency_per_type = get_lead_agency_analysis(sites)
 	tele_core, bis_tele_core, cc_tele_core, avg_tele_core_users = get_tele_core_analysis(sites)
+	poe_cap = get_poe_capability_analysis(sites)
 
 	# save result as comma-separated list
 	output = init_outfile()
@@ -70,6 +71,8 @@ def site_analysis():
 
 	for k,v in avg_tele_core_users.items():
 		output += add_new_data(encode_multimap(v, False), title='Average Number of Workers at Sites - '+k)
+	
+	output += add_new_data(encode_maplist_w_sum(poe_cap), title='Number of Sites that are POE Capable by Site Size')
 
 	# print output and save it in OUTFILE
 	print(output)

@@ -59,3 +59,10 @@ def get_agency_per_type(sites):
 			apt[temp2[i]] = apt[temp[i]]
 			del apt[temp[i]]
 	return apt
+
+def get_poe(sites):
+	types = ('Yes','Some','No','')
+	poe_cap = {type:[0 for _ in range(7)] for type in types}
+	for site in sites:
+		poe_cap[site.poe_capable][site.site_size] += 1
+	return poe_cap
