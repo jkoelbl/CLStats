@@ -62,7 +62,7 @@ class program:
 
 	def get_bis_func(self, data):
 		return [e == 'yes' for e in data]
-	
+
 	def __str__(self):
 		group = [self.name, self.agency, self.is_247, events]
 		group2 = [','.join(self.bis_func), self.telephony_users, self.contact_center, self.cc_complexity, self.reporting]
@@ -78,7 +78,7 @@ class site:
 		self.is_leased = data[3] if data[3] else 'none'
 		self.region = data[5]
 		self.lead_agency = data[6]
-		self.poe_capable = ''
+		self.poe_capable = 'no'
 		self.total = 0
 		self.site_size = 0
 		self.programs = []
@@ -98,14 +98,14 @@ class site:
 		self.total += self.programs[-1].contact_center.total
 		self.site_size = self.get_site_size()
 		self.poe_capable = self.get_poe_capability()
-	
+
 	def get_poe_capability(self):
-		blanks = ([sum([1 for poe in program.poe if poe == '']) for program in self.programs])
-		yeses = ([sum([1 for poe in program.poe if poe == 'Yes']) for program in self.programs])
-		noes = ([sum([1 for poe in program.poe if poe == 'No']) for program in self.programs])
-		if yeses and not noes:	return 'Yes'
-		if yeses and noes:	return 'Some'
-		if noes:	return 'No'
+		selects = sum([1 for program in self.programs if program.poe == ''])
+		yeses = sum([1 for program in self.programs if program.poe == 'yes'])
+		noes = sum([1 for program in self.programs if program.poe == 'no'])
+		if yeses and noes:	return 'some'
+		if yeses and not noes:	return 'yes'
+		if noes and not selects:	return 'no'
 		return ''
 
 	def __str__(self):

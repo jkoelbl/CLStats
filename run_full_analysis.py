@@ -11,6 +11,6 @@ else:
 	if "harvest" in commands:
 		get_all_data()
 	if "user" in commands:
-		get_all_data()
+		user_summary()
 	"""if "issues" in commands:
 		get_issues()"""

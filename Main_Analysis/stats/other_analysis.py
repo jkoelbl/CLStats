@@ -61,8 +61,10 @@ def get_agency_per_type(sites):
 	return apt
 
 def get_poe(sites):
-	types = ('Yes','Some','No','')
+	types = ('yes','some','no','')
 	poe_cap = {type:[0 for _ in range(7)] for type in types}
 	for site in sites:
 		poe_cap[site.poe_capable][site.site_size] += 1
+	types_extended = ('Yes','Some','No','Blank')
+	poe_cap = {types_extended[i]:poe_cap[types[i]] for i in range(len(types))}
 	return poe_cap

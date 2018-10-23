@@ -112,7 +112,8 @@ class program:
 				self.cc_platform, ','.join(self.agents), \
 				self.agent_types, self.complexity, self.reporting, \
 				','.join(self.connectivity), self.poe)
-		return ','.join(group)
+		#return ','.join(group)
+		return self.poe
 
 		
 OLD = ('E32','C5','E30','C25','C5','C6','D6', \
